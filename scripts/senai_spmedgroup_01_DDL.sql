@@ -4,7 +4,7 @@ GO
 USE SP_MEDICAL_GROUP;
 GO
 
--- Tabela criada para se focada a especialidades dos médicos
+-- Tabela criada para ser focada a especialidades dos mÃ©dicos
 CREATE TABLE ESPECIALIDADE (
 	
 	idEspecialidade SMALLINT PRIMARY KEY IDENTITY(1,1),
@@ -13,7 +13,7 @@ CREATE TABLE ESPECIALIDADE (
 );
 GO
 
--- Tabela criada para colocar as informações da clínica
+-- Tabela criada para colocar as informaÃ§Ãµes da clÃ­nica
 CREATE TABLE CLINICA (
 
 	idClinica TINYINT PRIMARY KEY IDENTITY(1,1),
@@ -25,7 +25,7 @@ CREATE TABLE CLINICA (
 );
 GO
 
--- Tabela criada para as informações dos médicos
+-- Tabela criada para as informaÃ§Ãµes dos mÃ©dicos
 CREATE TABLE MEDICO (
 	
 	idMedico SMALLINT PRIMARY KEY IDENTITY(1,1),
@@ -39,7 +39,7 @@ CREATE TABLE MEDICO (
 );
 GO
 
--- Tabela criada para especificar o endereço dos pacientes, desejável ser um endereço único, e se houver repetidos, apenas utilizar a ID correspondente
+-- Tabela criada para especificar o endereÃ§o dos pacientes, desejÃ¡vel ser um endereÃ§o Ãºnico, e se houver repetidos, apenas utilizar a ID correspondente
 CREATE TABLE ENDERECO (
 
 	idEndereco INT PRIMARY KEY IDENTITY(1,1),
@@ -54,7 +54,7 @@ CREATE TABLE ENDERECO (
 GO
 
 
--- Tabela criada para as informações dos pacientes. Adicionado o número de endereço nesta tabela, visto que é melhor deixar o endereço global, enquanto o número ser algo mais exato
+-- Tabela criada para as informaÃ§Ãµes dos pacientes. Adicionado o nÃºmero de endereÃ§o nesta tabela, visto que Ã© melhor deixar o endereÃ§o global, enquanto o nÃºmero ser algo mais exato
 CREATE TABLE PACIENTE (
 
 	idPaciente INT PRIMARY KEY IDENTITY(1,1),
@@ -71,7 +71,7 @@ CREATE TABLE PACIENTE (
 );
 GO
 
--- Tabela criada apenas para indicar a situação do agendamento
+-- Tabela criada apenas para indicar a situaÃ§Ã£o do agendamento
 CREATE TABLE SITUACAO (
 
 	idSituacao TINYINT PRIMARY KEY IDENTITY,
@@ -80,7 +80,7 @@ CREATE TABLE SITUACAO (
 );
 GO
 
--- Tabela criada para informar o paciente que será atendido, o médico que o atenderá, a data de quando foi ou será, e a situação se foi atendido, cancelado ou está agendada
+-- Tabela criada para informar o paciente que serÃ¡ atendido, o mÃ©dico que o atenderÃ¡, a data de quando foi ou serÃ¡, e a situaÃ§Ã£o se foi atendido, cancelado ou estÃ¡ agendada
 CREATE TABLE AGENDAMENTO (
 
 	idAgendamento INT PRIMARY KEY IDENTITY(1,1),
