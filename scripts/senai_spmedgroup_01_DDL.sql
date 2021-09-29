@@ -4,7 +4,7 @@ GO
 USE SP_MEDICAL_GROUP;
 GO
 
--- Tabela criada para se focada a especialidades dos médicos
+-- Tabela criada para ser focada a especialidades dos médicos
 CREATE TABLE ESPECIALIDADE (
 	
 	idEspecialidade SMALLINT PRIMARY KEY IDENTITY(1,1),
