@@ -10,42 +10,42 @@ namespace senai_spmedicalgroup_webAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class EnderecosController : ControllerBase
+    public class PacientesController : ControllerBase
     {
-        private IEnderecoRepository EndrcRepository { get; set; }
-        public EnderecosController()
+        private IPacienteRepository pcntRepository { get; set; }
+        public PacientesController()
         {
-            EndrcRepository = new EnderecoRepository();
+            pcntRepository = new PacienteRepository();
         }
 
         [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Listar()
         {
-            return Ok(EndrcRepository.ListarTodos());
+            return Ok(pcntRepository.ListarTodos());
         }
 
         [Authorize(Roles = "1")]
         [HttpGet("{îd}")]
         public IActionResult BuscarID(int id)
         {
-            return Ok(EndrcRepository.BuscarPorID(id));
+            return Ok(pcntRepository.BuscarPorID(id));
         }
 
         [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Cadastrar(Endereco novoEndereco)
+        public IActionResult Cadastrar(Paciente novoPaciente)
         {
-            EndrcRepository.Cadastrar(novoEndereco);
+            pcntRepository.Cadastrar(novoPaciente);
 
             return StatusCode(201);
         }
 
         [Authorize(Roles = "1")]
         [HttpPut("{id}")]
-        public IActionResult AtualizarURL(int id, Endereco enderecoAtualizado)
+        public IActionResult AtualizarURL(int id, Paciente pacienteAtualizado)
         {
-            EndrcRepository.AtualizarURL(id, enderecoAtualizado);
+            pcntRepository.AtualizarURL(id, pacienteAtualizado);
 
             return StatusCode(204);
         }
@@ -54,7 +54,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            EndrcRepository.Remover(id);
+            pcntRepository.Remover(id);
 
             return StatusCode(204);
         }
