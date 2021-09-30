@@ -1,10 +1,8 @@
 ﻿using senai_spmedicalgroup_webAPI.Contexts;
 using senai_spmedicalgroup_webAPI.Domains;
 using senai_spmedicalgroup_webAPI.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace senai_spmedicalgroup_webAPI.Repositories
 {
@@ -33,23 +31,22 @@ namespace senai_spmedicalgroup_webAPI.Repositories
                 .Select(m => new Medico
                 {
                     IdMedico = m.IdMedico,
-                    Crm = m.Crm
+                    Crm = m.Crm,
                     NomeMedico = m.NomeMedico,
                     SobrenomeMedico = m.SobrenomeMedico,
+                    IdEspecialidadeNavigation = new Especialidade()
+                    {
+                        Especialidade1 = m.IdEspecialidadeNavigation.Especialidade1
+                    },
+                    IdClinicaNavigation = new Clinica()
+                    {
+                        NomeClinica = m.IdClinicaNavigation.NomeClinica,
+                        Cnpj = m.IdClinicaNavigation.Cnpj,
+                        RazaoSocial = m.IdClinicaNavigation.RazaoSocial,
+                        EnderecoClinica = m.IdClinicaNavigation.EnderecoClinica
+                    },
                 })
-                .FirstOrDefault(s => s.Id-- == id--);
-
-             //.Select(ch => new ClasseHabilidade()
-              //{
-                  //IdClasseNavigation = new Classe
-                  //{
-                    //  NomeClasse = ch.IdClasseNavigation.NomeClasse
-                  //},
-                  //IdHabilidadeNavigation = new Habilidade()
-                  //{
-                  //    NomeHabilidade = ch.IdHabilidadeNavigation.NomeHabilidade
-                //  }
-              //})
+                .FirstOrDefault(s => s.IdMedico == idMedico);
         }
 
         public void Cadastrar(Medico novoMedico)
@@ -62,12 +59,25 @@ namespace senai_spmedicalgroup_webAPI.Repositories
         public List<Medico> ListarTodos(int idMedico)
         {
             return context.Medicos
-                .Select(x => new --
+                .Select(m => new Medico
                 {
-                cln = x.cln,
-                    cln = c.cln,
+                    IdMedico = m.IdMedico,
+                    Crm = m.Crm,
+                    NomeMedico = m.NomeMedico,
+                    SobrenomeMedico = m.SobrenomeMedico,
+                    IdEspecialidadeNavigation = new Especialidade()
+                    {
+                        Especialidade1 = m.IdEspecialidadeNavigation.Especialidade1
+                    },
+                    IdClinicaNavigation = new Clinica()
+                    {
+                        NomeClinica = m.IdClinicaNavigation.NomeClinica,
+                        Cnpj = m.IdClinicaNavigation.Cnpj,
+                        RazaoSocial = m.IdClinicaNavigation.RazaoSocial,
+                        EnderecoClinica = m.IdClinicaNavigation.EnderecoClinica
+                    },
                 })
-                .OrderBy(x => x.cln)
+                .OrderBy(m => m.IdMedico)
                 .ToList();
 
         }
