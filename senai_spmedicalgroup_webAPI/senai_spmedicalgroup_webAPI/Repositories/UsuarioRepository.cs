@@ -87,5 +87,10 @@ namespace senai_spmedicalgroup_webAPI.Repositories
 
             context.SaveChanges();
         }
+
+        public Usuario Login(string email, string senha)
+        {
+            return context.Usuarios.FirstOrDefault(u => u.Email == email || u.Senha == senha);
+        }
     }
 }

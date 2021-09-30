@@ -17,5 +17,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
         void AtualizarURL(int idUsuario, Usuario usuarioAtualizado);
 
         void Remover(int idUsuario);
+
+        Usuario Login(string email, string senha);
     }
 }
