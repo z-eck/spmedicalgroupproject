@@ -8,7 +8,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
 {
     interface IUsuarioRepository
     {
-        List<Usuario> ListarTodos(int idUsuario);
+        List<Usuario> ListarTodos();
 
         Usuario BuscarPorID(int idUsuario);
 

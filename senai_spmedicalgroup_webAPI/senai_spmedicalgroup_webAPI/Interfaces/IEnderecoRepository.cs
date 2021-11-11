@@ -8,7 +8,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
 {
     interface IEnderecoRepository
     {
-        List<Endereco> ListarTodos(int idEndereco);
+        List<Endereco> ListarTodos();
 
         Endereco BuscarPorID(int idEndereco);
 

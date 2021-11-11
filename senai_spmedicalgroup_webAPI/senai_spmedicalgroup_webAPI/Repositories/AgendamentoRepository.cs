@@ -59,7 +59,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
             context.SaveChanges();
         }
 
-        public List<Agendamento> ListarTodos(int idAgendamento)
+        public List<Agendamento> ListarTodos()
         {
             return context.Agendamentos
                 .Select(a => new Agendamento

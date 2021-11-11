@@ -56,7 +56,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
             context.SaveChanges();
         }
 
-        public List<Medico> ListarTodos(int idMedico)
+        public List<Medico> ListarTodos()
         {
             return context.Medicos
                 .Select(m => new Medico

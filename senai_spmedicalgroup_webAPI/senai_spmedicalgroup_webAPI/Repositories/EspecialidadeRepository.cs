@@ -36,7 +36,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
             context.SaveChanges();
         }
 
-        public List<Especialidade> ListarTodos(int idEspecialidade)
+        public List<Especialidade> ListarTodos()
         {
             return context.Especialidades.ToList();
         }

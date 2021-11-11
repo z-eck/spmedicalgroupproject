@@ -15,6 +15,7 @@ SELECT	crm [CRM],
 FROM MEDICO M
 INNER JOIN ESPECIALIDADE E ON (M.idEspecialidade = E.idEspecialidade)
 INNER JOIN CLINICA C ON (M.idClinica = C.idClinica)
+INNER JOIN USUARIO U ON (M.idMedico = U.idMedico)
 
 -- Listagem dos Prontuários
 SELECT	nomePaciente [Nome],
@@ -32,7 +33,8 @@ SELECT	nomePaciente [Nome],
 		uf [Estado],
 		cep [CEP]
 FROM PACIENTE P
-LEFT JOIN ENDERECO E ON (P.idEndereco = E.idEndereco)
+INNER JOIN ENDERECO E ON (P.idEndereco = E.idEndereco)
+INNER JOIN USUARIO U ON (P.idPaciente = U.idPaciente)
 
 -- Listagem das Consultas
 SELECT	nomePaciente [Prontuário],

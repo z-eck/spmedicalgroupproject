@@ -5,7 +5,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
 {
     interface IEspecialidadeRepository
     {
-        List<Especialidade> ListarTodos(int idEspecialidade);
+        List<Especialidade> ListarTodos();
 
         Especialidade BuscarPorID(int idEspecialidade);
 

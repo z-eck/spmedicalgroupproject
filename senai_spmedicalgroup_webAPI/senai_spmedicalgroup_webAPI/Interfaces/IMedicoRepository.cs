@@ -8,7 +8,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
 {
     interface IMedicoRepository
     {
-        List<Medico> ListarTodos(int idMedico);
+        List<Medico> ListarTodos();
 
         Medico BuscarPorID(int idMedico);
 

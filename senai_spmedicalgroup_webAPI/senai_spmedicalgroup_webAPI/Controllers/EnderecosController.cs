@@ -18,14 +18,14 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             EndrcRepository = new EnderecoRepository();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "1, 2, 3")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(EndrcRepository.ListarTodos());
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "1, 2, 3")]
         [HttpGet("{îd}")]
         public IActionResult BuscarID(int id)
         {

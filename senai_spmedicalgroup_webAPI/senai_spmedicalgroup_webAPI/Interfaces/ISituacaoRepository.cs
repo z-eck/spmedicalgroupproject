@@ -8,7 +8,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
 {
     interface ISituacaoRepository
     {
-        List<Situacao> ListarTodos(int idSituacao);
+        List<Situacao> ListarTodos();
 
         Situacao BuscarPorID(int idSituacao);
     }

@@ -9,6 +9,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+    [Authorize(Roles = "1")]
     public class TipousuariosController : ControllerBase
     {
         private ITipousuarioRepository tpsrRepository { get; set; }
@@ -17,14 +18,12 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             tpsrRepository = new TipousuarioRepository();
         }
 
-        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(tpsrRepository.ListarTodos());
         }
 
-        [Authorize(Roles = "1")]
         [HttpGet("{îd}")]
         public IActionResult BuscarID(int id)
         {

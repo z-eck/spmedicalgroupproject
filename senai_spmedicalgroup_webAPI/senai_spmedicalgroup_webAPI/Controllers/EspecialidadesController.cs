@@ -9,7 +9,6 @@ namespace senai_spmedicalgroup_webAPI.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class EspecialidadesController : ControllerBase
     {
         private IEspecialidadeRepository EspclddRepository { get; set; }
@@ -18,14 +17,12 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             EspclddRepository = new EspecialidadeRepository();
         }
 
-        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(EspclddRepository.ListarTodos());
         }
 
-        [Authorize(Roles = "1")]
         [HttpGet("{îd}")]
         public IActionResult BuscarID(int id)
         {

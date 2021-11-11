@@ -58,7 +58,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
 
         }
 
-        public List<Usuario> ListarTodos(int idUsuario)
+        public List<Usuario> ListarTodos()
         {
             return context.Usuarios
                 .Select(u => new Usuario

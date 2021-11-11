@@ -8,7 +8,7 @@ namespace senai_spmedicalgroup_webAPI.Interfaces
 {
     interface IClinicaRepository
     {
-        List<Clinica> ListarTodos(int idClinica);
+        List<Clinica> ListarTodos();
 
         Clinica BuscarPorID(int idClinica);
     }

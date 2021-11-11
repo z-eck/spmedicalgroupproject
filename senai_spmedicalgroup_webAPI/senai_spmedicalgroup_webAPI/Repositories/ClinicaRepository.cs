@@ -24,7 +24,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
                 .FirstOrDefault(c => c.IdClinica == idClinica);
         }
 
-        public List<Clinica> ListarTodos(int idClinica)
+        public List<Clinica> ListarTodos()
         {
             return context.Clinicas
                 .Select(c => new Clinica

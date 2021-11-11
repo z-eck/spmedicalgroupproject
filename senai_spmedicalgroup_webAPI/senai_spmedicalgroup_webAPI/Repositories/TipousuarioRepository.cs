@@ -23,7 +23,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
                 .FirstOrDefault(t => t.IdTipoUsuario == idTipoUsuario);
         }
 
-        public List<Tipousuario> ListarTodos(int idTipoUsuario)
+        public List<Tipousuario> ListarTodos()
         {
             return context.Tipousuarios
                 .Select(t => new Tipousuario

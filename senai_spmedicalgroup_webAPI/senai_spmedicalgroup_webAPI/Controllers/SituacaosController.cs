@@ -17,14 +17,14 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             stcRepository = new SituacaoRepository();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "1, 2, 3")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(stcRepository.ListarTodos());
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "1, 2, 3")]
         [HttpGet("{îd}")]
         public IActionResult BuscarID(int id)
         {

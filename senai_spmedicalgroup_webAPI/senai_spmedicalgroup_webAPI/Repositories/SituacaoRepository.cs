@@ -22,7 +22,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
                 .FirstOrDefault(s => s.IdSituacao == idSituacao);
         }
 
-        public List<Situacao> ListarTodos(int idSituacao)
+        public List<Situacao> ListarTodos()
         {
             return context.Situacaos
                 .Select(s => new Situacao

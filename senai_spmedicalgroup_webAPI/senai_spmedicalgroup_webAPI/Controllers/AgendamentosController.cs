@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using senai_spmedicalgroup_webAPI.Domains;
 using senai_spmedicalgroup_webAPI.Interfaces;
 using senai_spmedicalgroup_webAPI.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace senai_spmedicalgroup_webAPI.Controllers
 {
@@ -23,7 +18,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             AgndmntRepository = new AgendamentoRepository();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "1, 2, 3")]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -46,7 +41,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             return StatusCode(201);
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "1, 2")]
         [HttpPut("{id}")]
         public IActionResult AtualizarURL(int id, Agendamento agendamentoAtualizado)
         {

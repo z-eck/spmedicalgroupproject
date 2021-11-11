@@ -50,7 +50,7 @@ namespace senai_spmedicalgroup_webAPI.Repositories
             context.SaveChanges();
         }
 
-        public List<Endereco> ListarTodos(int idEndereco)
+        public List<Endereco> ListarTodos()
         {
             return context.Enderecos
                 .Select(en => new Endereco
