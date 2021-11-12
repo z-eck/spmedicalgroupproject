@@ -1,5 +1,6 @@
 // import { render } from '@testing-library/react';
-import { Component, render } from 'react';
+import { Component } from 'react';
+import axios from 'axios';
 
 export default class Agendamento extends Component {
     constructor(props){
@@ -13,15 +14,18 @@ export default class Agendamento extends Component {
     }
 
     buscarAgendamentos = () => {
-        console.log('chamada para a API');
-
-        fetch('http://127.0.0.1:5000/api/Agendamentos')
-        
-        .then(resposta => resposta.json())
-
-        .then( dados => this.setState({listaAgendamentos: dados}))
-
-        .catch(erro => console.log(erro))
+        axios('http://localhost:5000/api/Agendamentos', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+      },
+    })
+      .then((resposta) => {
+        if (resposta.status === 200) {
+          this.setState({ listaTiposEventos: resposta.data });
+          console.log(this.state.listaTiposEventos);
+        }
+      })
+      .catch((erro) => console.log(erro));
     }
 
     componentDidMount(){

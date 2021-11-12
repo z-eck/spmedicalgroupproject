@@ -8,6 +8,7 @@ import Home from './pages/home/App';
 import Login from './pages/login/login';
 import Agendamentos from './pages/agendamentos/agendamentos';
 import NotFound from './pages/notfound/NotFound';
+import Especialidades from './pages/especialidades/especialidades';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -19,6 +20,7 @@ const routing = (
         <Route path="/agendamentos" component={Agendamentos}/>
         <Route path="/login" component={Login} />
         <Route path="/notfound" component={NotFound} />
+        <Route path="/especialidades" component={Especialidades} />
         <Redirect to="/notfound" />
       </Switch>
     </div>

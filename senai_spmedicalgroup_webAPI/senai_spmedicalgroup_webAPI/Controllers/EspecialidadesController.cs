@@ -29,7 +29,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             return Ok(EspclddRepository.BuscarPorID(id));
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpPost]
         public IActionResult Cadastrar(Especialidade novaEspecialidade)
         {
@@ -38,7 +38,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             return StatusCode(201);
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpPut("{id}")]
         public IActionResult AtualizarURL(int id, Especialidade especialidadeAtualizada)
         {
@@ -47,7 +47,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             return StatusCode(204);
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
