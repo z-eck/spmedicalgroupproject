@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Component } from 'react';
 
 export default class Especialidades extends Component {
@@ -40,11 +41,7 @@ export default class Especialidades extends Component {
 
         if (this.state.idEspecialidadeAlterada !== 0) {
             console.log('Atualização');
-            fetch('http://127.0.0.1:5000/api/Especialidades/' + this.state.idEspecialidadeAlterada, {
-                method : 'PUT',
-                body : JSON.stringify({ especialidade1 : this.state.especialidade}),
-                headers : {"Content-type" : "application/json"}
-            })
+            axios.put('http://127.0.0.1:5000/api/Especialidades/' + this.state.idEspecialidadeAlterada, {especialidade1 : this.state.especialidade} )
 
             .then(resposta => {
                 if (resposta.status === 204) {

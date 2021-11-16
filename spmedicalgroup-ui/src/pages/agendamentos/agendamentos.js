@@ -16,7 +16,7 @@ export default class Agendamento extends Component {
     buscarAgendamentos = () => {
         axios('http://localhost:5000/api/Agendamentos', {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+        Authorization: 'Bearer ' + localStorage.getItem('usuario-token'),
       },
     })
       .then((resposta) => {
