@@ -9,8 +9,7 @@ export default class Login extends Component {
             email : '',
             senha : '',
             mensagemErro : '',
-            isLoading : false,
-            role: 0
+            isLoading : false
         };
     };
 
@@ -30,7 +29,7 @@ export default class Login extends Component {
 
                 this.setState({isLoading : false})
 
-                if (parseJwt === 1) {
+                if (parseJwt().role === '1') {
                     this.props.history.push('/dashadmin')
                 }
 
@@ -69,7 +68,7 @@ export default class Login extends Component {
                             value={this.state.senha}
                             onChange={this.atualizarEstadoCampo}
                             placeholder="Senha"/>
-                            {this.state.isLoading === true && <button>Carregando...</button> }
+                            {this.state.isLoading === true && <button disabled={this.state.isLoading === true}>Carregando...</button> }
                             {this.state.isLoading === false && 
                             <button 
                             type="submit" 
@@ -79,20 +78,6 @@ export default class Login extends Component {
                         </form>
                     </section>
                 </main>
-            {/* <section>
-                                <h2>Cadastro de Especialidade</h2>
-                                <form onSubmit={this.cadastrarEspecialidade}>
-                                    <div>
-                                        <input type="text"
-                                        value={this.state.especialidade}
-                                        placeholder="Especialidade"
-                                        onChange={this.atualizaEstadoEspecialidade}
-                                        />
-                                        <button type="submit">Cadastrar</button>
-                                    </div>
-                                </form>
-                    </section>
-                </main> */}
             </div>
         )
     }
