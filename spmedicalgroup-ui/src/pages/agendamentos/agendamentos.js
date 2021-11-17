@@ -1,42 +1,46 @@
 // import { render } from '@testing-library/react';
 import { Component } from 'react';
 import axios from 'axios';
+import { parseJwt } from '../../services/auth';
 
 export default class Agendamento extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             listaAgendamentos: [],
             paciente: '',
             medico: '',
-            situacao: ''
+            situacao: '',
+            dataHora: Date
         }
     }
 
     buscarAgendamentos = () => {
         axios('http://localhost:5000/api/Agendamentos', {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('usuario-token'),
-      },
-    })
-      .then((resposta) => {
-        if (resposta.status === 200) {
-          this.setState({ listaTiposEventos: resposta.data });
-          console.log(this.state.listaTiposEventos);
-        }
-      })
-      .catch((erro) => console.log(erro));
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-token'),
+            },
+        })
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    this.setState({ listaAgendamentos: resposta.data });
+                    console.log(parseJwt().idP);
+                    console.log(this.state.listaAgendamentos);
+                    console.log(resposta);
+                }
+            })
+            .catch((erro) => console.log(erro));
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.buscarAgendamentos()
 
 
         //
     };
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <main>
                     <section>
@@ -48,17 +52,19 @@ export default class Agendamento extends Component {
                                     <th>Paciente</th>
                                     <th>Médico</th>
                                     <th>Situação</th>
+                                    <th>Data e Hora</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.state.listaAgendamentos.map( (oagendamento) => {
-                                        return(
+                                    this.state.listaAgendamentos.map((oagendamento) => {
+                                        return (
                                             <tr key={oagendamento.idAgendamento}>
                                                 <td>{oagendamento.idAgendamento}</td>
-                                                <td>{oagendamento.paciente}</td>
-                                                <td>{oagendamento.medico}</td>
-                                                <td>{oagendamento.situacao}</td>
+                                                <td>{oagendamento.idPacienteNavigation.nomePaciente}</td>
+                                                <td>{oagendamento.idMedicoNavigation.nomeMedico}</td>
+                                                <td>{oagendamento.idSituacaoNavigation.descricao}</td>
+                                                <td>{oagendamento.datahoraConsulta}</td>
                                             </tr>
                                         )
                                     })
