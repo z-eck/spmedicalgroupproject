@@ -12,11 +12,11 @@ namespace senai_spmedicalgroup_webAPI.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginsController : ControllerBase
+    public class LoginController : ControllerBase
     {
         private IUsuarioRepository srRepository { get; set; }
 
-        public LoginsController()
+        public LoginController()
         {
             srRepository = new UsuarioRepository();
         }
