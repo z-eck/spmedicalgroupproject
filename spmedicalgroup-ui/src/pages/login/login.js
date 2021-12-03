@@ -18,7 +18,7 @@ export default class Login extends Component {
 
         this.setState({ mensagemErro  : '', isLoading : true})
 
-        axios.post('http://127.0.0.1:5000/api/Logins', {email : this.state.email, senha: this.state.senha})
+        axios.post('http://192.168.4.100:5000/api/Login', {email : this.state.email, senha: this.state.senha})
 
         .then(resposta => {
             if (resposta.status === 200) {

@@ -1,31 +1,36 @@
-import 'react-native-gesture-handler';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
-import React from 'react';
-import { StatusBar } from 'react-native';
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Agendamentos</Text>
+        </View >
+      </View >
+    );
+  }
+};
 
-// import {NavigationContainer} from '@react-navigation/native';
-// import {createStackNavigator} from '@react-navigation/stack';
+const styles = StyleSheet.create({
+  header: {
+    alignItems: 'center'
+  },
+  
+  main: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'    
+  },
 
-const AutStack = createStackNavigator();
-
-import Login from './src/screens/login';
-import Main from './src/screens/main';
-
-export default function Stack() {
-  return (
-    <NavigationContainer>
-      <StatusBar
-        hidden={true}
-      />
-
-      <AuthStack.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <AuthStack.Screen name="Login" component={Login} />
-        <AuthStack.Screen name="Main" component={Main} />
-      </AuthStack.Navigator>
-    </NavigationContainer>
-  );
-}
+  headerText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: 'blue'
+  }
+});
