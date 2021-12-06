@@ -9,7 +9,7 @@ namespace senai_spmedicalgroup_webAPI.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AgendamentosController : ControllerBase
     {
         private IAgendamentoRepository AgndmntRepository { get; set; }
@@ -18,14 +18,14 @@ namespace senai_spmedicalgroup_webAPI.Controllers
             AgndmntRepository = new AgendamentoRepository();
         }
 
-        [Authorize(Roles = "1, 2, 3")]
+        //[Authorize(Roles = "1, 2, 3")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(AgndmntRepository.ListarTodos());
         }
 
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpGet("{îd}")]
         public IActionResult BuscarID(int id)
         {

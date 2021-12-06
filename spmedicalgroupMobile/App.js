@@ -19,7 +19,7 @@ export default class App extends Component {
   };
 
   getAgendamentos = async () => {
-    const response = await api.get('/especialidades'); // <==
+    const response = await api.get('/Agendamentos'); // <== Chamada para API
     console.warn(response);
     const dataApi = response.data;
     this.setState({ listAgendamentos : dataApi});
@@ -41,18 +41,28 @@ export default class App extends Component {
           {/* Parte de listagem */}
           <View style={styles.list}>
             {/* Parte de informações do médico, paciente, data e situação do agendamento da listagem */}
-            <FlatList
-              contentContainerStyle={styles.listInfo}
-              data={this.state.listAgendamentos}
-              keyExtractor={item => item.idEspecialidade} // <==
-              renderItem={this.renderItem} />
+            <View style={styles.listInfoTitle}>
+              <Text>Paciente</Text>
+              <Text>Médico</Text>
+              <Text>Data</Text>
+              <Text>Situação</Text>
+              <FlatList
+                contentContainerStyle={styles.listInfo}
+                data={this.state.listAgendamentos}
+                keyExtractor={item => item.idAgendamento} // <== ID
+                renderItem={this.renderItem} />
+            </View>
             {/* Parte de descrição da listagem */}
-            <FlatList
-              contentContainerStyle={styles.listDesc}
-              data={this.state.listAgendamentos}
-              keyExtractor={item => item.idEspecialidade} // <==
-              renderItem={this.renderItem} />
-            <View style={styles.listDivisor} />
+            <View style={styles.listDescTitle}>
+              <Text>Descrição</Text>
+              <FlatList
+                contentContainerStyle={styles.listDesc}
+                data={this.state.listAgendamentos}
+                keyExtractor={item => item.idAgendamento} // <== ID
+                renderItem={this.renderItem} />
+                
+          <View style={styles.listDivisor} />
+            </View>
           </View>
         </View>
       </View >
@@ -60,16 +70,19 @@ export default class App extends Component {
   }
   
   renderItem = ({ item }) => (
-    <View style={styles.listInfo}>
-      <Text style={styles.listInfoText}>{item.especialidade1}</Text>
-      {/* <Text style={styles.listInfoText}>{item.nomeMedico}</Text>
-      <Text style={styles.listInfoText}>{item.sobrenomeMedico}</Text>
-      <Text style={styles.listInfoText}>{item.data}</Text>
-      <Text style={styles.listInfoText}>{item.situacao}</Text>
+    <View style={styles.list}>
+      <View style={styles.listInfo}>
+        <Text style={styles.listInfoText}>{(item.idPacienteNavigation.nomePaciente)}</Text>
+        <Text style={styles.listInfoText}>{(item.idMedicoNavigation.nomeMedico)}</Text>
+        <Text style={styles.listInfoText}>{(item.idMedicoNavigation.sobrenomeMedico)}</Text>
+        <Text style={styles.listInfoText}>{item.datahoraConsulta}</Text>
+        <Text style={styles.listInfoText}>{(item.idSituacaoNavigation.descricao)}</Text>
+      </View>
+      <View style={styles.listDesc}>
+        <Text style={styles.listDescText}>{item.descricao}</Text>
+      </View>
     </View>
-    <View style={styles.listDesc}>
-      <Text style={styles.listDescText}>{item.descricao}</Text> */}
-    </View>
+
   )
 };
 
@@ -89,31 +102,54 @@ const styles = StyleSheet.create({
   },
 
   body: {
+    // flex: 4,
     alignItems: 'center',
-    backgroundColor: '#000000'
+    // backgroundColor: '#000000'
+  },
+
+  list: {
+    // flex: 4,
+    backgroundColor: '#3582FF',
+    width: '80%',
+    height: '80%',
+  },
+
+  listInfo: {
+    color: ''
   },
 
   listInfoTitle: {
     fontFamily: 'Roboto Slab',
-    fontSize: 15
+    fontSize: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#fff'
   },
 
   listInfoText: {
     fontFamily: 'Roboto',
     fontStyle: 'italic',
     fontWeight: 'normal',
-    fontSize: 10,
+    fontSize: 13,
     lineHeight: 12,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
-    color: '#fff'
+    color: '#fff',
+    letterSpacing: 2,
+    marginTop: 8,
+    flexDirection: 'row'
+  },
+
+  listDescTitle: {
+    color: '#fff',
+    marginTop: 2
   },
 
   listDivisor: {
     paddingTop: 10,
-    width: 360,
-    borderBottomColor: '#000',
+    width: '100%',
+    borderBottomColor: '#ff2400',
     borderBottomWidth: 3
   },
 });
