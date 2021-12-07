@@ -40,49 +40,46 @@ export default class App extends Component {
         <View style={styles.body}>
           {/* Parte de listagem */}
           <View style={styles.list}>
-            {/* Parte de informações do médico, paciente, data e situação do agendamento da listagem */}
-            <View style={styles.listInfoTitle}>
-              <Text>Paciente</Text>
-              <Text>Médico</Text>
-              <Text>Data</Text>
-              <Text>Situação</Text>
+            {/* Parte de informações do médico, paciente, data, situação e descrição do agendamento da listagem */}
               <FlatList
-                contentContainerStyle={styles.listInfo}
+                contentContainerStyle={styles.list}
                 data={this.state.listAgendamentos}
                 keyExtractor={item => item.idAgendamento} // <== ID
                 renderItem={this.renderItem} />
-            </View>
-            {/* Parte de descrição da listagem */}
-            <View style={styles.listDescTitle}>
-              <Text>Descrição</Text>
-              <FlatList
-                contentContainerStyle={styles.listDesc}
-                data={this.state.listAgendamentos}
-                keyExtractor={item => item.idAgendamento} // <== ID
-                renderItem={this.renderItem} />
-                
-          <View style={styles.listDivisor} />
-            </View>
           </View>
         </View>
-      </View >
+      </View>
     );
   }
   
   renderItem = ({ item }) => (
     <View style={styles.list}>
+      <View style={styles.listList}>
       <View style={styles.listInfo}>
-        <Text style={styles.listInfoText}>{(item.idPacienteNavigation.nomePaciente)}</Text>
-        <Text style={styles.listInfoText}>{(item.idMedicoNavigation.nomeMedico)}</Text>
-        <Text style={styles.listInfoText}>{(item.idMedicoNavigation.sobrenomeMedico)}</Text>
-        <Text style={styles.listInfoText}>{item.datahoraConsulta}</Text>
-        <Text style={styles.listInfoText}>{(item.idSituacaoNavigation.descricao)}</Text>
+        <View style={styles.listInfoHeader}>
+          <Text style={styles.listInfoTitle}>Paciente:</Text>
+          <Text style={styles.listInfoTitle}>Médico:</Text>
+          <Text style={styles.listInfoTitle}>Data:</Text>
+          <Text style={styles.listInfoTitle}>Situação:</Text>
+        </View>
+        <View style={styles.listInfoBody}>
+          <Text style={styles.listInfoText}>{(item.idPacienteNavigation.nomePaciente)}</Text>
+          <Text style={styles.listInfoText}>{(item.idMedicoNavigation.nomeMedico) + ' ' + (item.idMedicoNavigation.sobrenomeMedico)}</Text>
+          <Text style={styles.listInfoText}>{item.datahoraConsulta}</Text>
+          <Text style={styles.listInfoText}>{(item.idSituacaoNavigation.descricao)}</Text>
+        </View>
       </View>
       <View style={styles.listDesc}>
-        <Text style={styles.listDescText}>{item.descricao}</Text>
+        <View style={styles.listDescHeader}>
+          <Text style={styles.listDescTitle}>Descrição</Text>
+        </View>
+        <View style={styles.listDescBody}>
+          <Text style={styles.listDescText}>TESTE TESTE TESTE TESTE teste teste teste teste{item.descricao}</Text>
+        </View>
+        </View>
       </View>
+      {/* <View style={styles.listDivisor} /> */}
     </View>
-
   )
 };
 
@@ -97,33 +94,58 @@ const styles = StyleSheet.create({
 
   headerText: {
     fontSize: 30,
+    fontFamily: 'Roboto Slab',
     fontWeight: 'bold',
     color: '#1AE0B4'
   },
 
   body: {
     // flex: 4,
-    alignItems: 'center',
-    // backgroundColor: '#000000'
-  },
+    // alignItems: 'center',
+    backgroundColor: '#90ee90'
+  }, 
 
   list: {
     // flex: 4,
     backgroundColor: '#3582FF',
-    width: '80%',
-    height: '80%',
+    // width: '80%',
+    // height: 160,
+    borderColor: '#ff2400',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingTop: 10,
+    width: '100%'
+  },
+
+  listList: {
+    flexDirection: 'row'
   },
 
   listInfo: {
-    color: ''
+    width: '50%',
+    flexDirection: 'row'
+  },
+
+  listInfoHeader: {
+    flexDirection: 'column',
+    borderColor: '#ff200'
   },
 
   listInfoTitle: {
     fontFamily: 'Roboto Slab',
-    fontSize: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff'
+    fontSize: 18,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 5,
+    paddingTop: 5,
+
+    // backgroundColor: '#ffff00'
+  },
+
+  listInfoBody: {
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+    // height: '20%'
   },
 
   listInfoText: {
@@ -134,22 +156,33 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     display: 'flex',
     alignItems: 'center',
-    textAlign: 'center',
+    textAlign: 'left',
     color: '#fff',
     letterSpacing: 2,
     marginTop: 8,
-    flexDirection: 'row'
+    width: 90,
+    height: 20
+    // position: 'absolute'
+  },
+
+  listDesc: {
+    width: '50%',
+    flexDirection: 'column'
+  },
+
+  listDescHeader: {
+    alignItems: 'center'
   },
 
   listDescTitle: {
     color: '#fff',
-    marginTop: 2
+    marginTop: 2,
   },
 
-  listDivisor: {
-    paddingTop: 10,
-    width: '100%',
-    borderBottomColor: '#ff2400',
-    borderBottomWidth: 3
-  },
+  // listDivisor: {
+  //   paddingTop: 10,
+  //   width: '100%',
+  //   borderBottomColor: '#ff2400',
+  //   borderBottomWidth: 3
+  // },
 });
