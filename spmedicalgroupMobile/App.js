@@ -1,188 +1,112 @@
-import React, { Component } from 'react';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import React from 'react';
+import type {Node} from 'react';
 import {
-  FlatList,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
+  useColorScheme,
   View,
 } from 'react-native';
 
-import api from './src/services/api';
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-// Começarei a digitar as funções e o que vier dentro em inglês, porém, manterei as anotações em PT-BR :D
-
-export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      listAgendamentos : []
-    };
-  };
-
-  getAgendamentos = async () => {
-    const response = await api.get('/Agendamentos'); // <== Chamada para API
-    console.warn(response);
-    const dataApi = response.data;
-    this.setState({ listAgendamentos : dataApi});
-  };
-
-  componentDidMount(){
-    this.getAgendamentos();
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        {/* Cabeçalho do projeto */}
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Agendamentos</Text>
-        </View>
-        {/* O corpo do projeto */}
-        <View style={styles.body}>
-          {/* Parte de listagem */}
-          <View style={styles.list}>
-            {/* Parte de informações do médico, paciente, data, situação e descrição do agendamento da listagem */}
-              <FlatList
-                contentContainerStyle={styles.list}
-                data={this.state.listAgendamentos}
-                keyExtractor={item => item.idAgendamento} // <== ID
-                renderItem={this.renderItem} />
-          </View>
-        </View>
-      </View>
-    );
-  }
-  
-  renderItem = ({ item }) => (
-    <View style={styles.list}>
-      <View style={styles.listList}>
-      <View style={styles.listInfo}>
-        <View style={styles.listInfoHeader}>
-          <Text style={styles.listInfoTitle}>Paciente:</Text>
-          <Text style={styles.listInfoTitle}>Médico:</Text>
-          <Text style={styles.listInfoTitle}>Data:</Text>
-          <Text style={styles.listInfoTitle}>Situação:</Text>
-        </View>
-        <View style={styles.listInfoBody}>
-          <Text style={styles.listInfoText}>{(item.idPacienteNavigation.nomePaciente)}</Text>
-          <Text style={styles.listInfoText}>{(item.idMedicoNavigation.nomeMedico) + ' ' + (item.idMedicoNavigation.sobrenomeMedico)}</Text>
-          <Text style={styles.listInfoText}>{item.datahoraConsulta}</Text>
-          <Text style={styles.listInfoText}>{(item.idSituacaoNavigation.descricao)}</Text>
-        </View>
-      </View>
-      <View style={styles.listDesc}>
-        <View style={styles.listDescHeader}>
-          <Text style={styles.listDescTitle}>Descrição</Text>
-        </View>
-        <View style={styles.listDescBody}>
-          <Text style={styles.listDescText}>TESTE TESTE TESTE TESTE teste teste teste teste{item.descricao}</Text>
-        </View>
-        </View>
-      </View>
-      {/* <View style={styles.listDivisor} /> */}
+const Section = ({children, title}): Node => {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
     </View>
-  )
+  );
+};
+
+const App: () => Node = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  return (
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    height: 64,
-    width: '100%',
-    alignItems: 'center',
-    backgroundColor: '#3582FF',
-    justifyContent: 'center'
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
   },
-
-  headerText: {
-    fontSize: 30,
-    fontFamily: 'Roboto Slab',
-    fontWeight: 'bold',
-    color: '#1AE0B4'
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
   },
-
-  body: {
-    // flex: 4,
-    // alignItems: 'center',
-    backgroundColor: '#90ee90'
-  }, 
-
-  list: {
-    // flex: 4,
-    backgroundColor: '#3582FF',
-    // width: '80%',
-    // height: 160,
-    borderColor: '#ff2400',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    paddingTop: 10,
-    width: '100%'
-  },
-
-  listList: {
-    flexDirection: 'row'
-  },
-
-  listInfo: {
-    width: '50%',
-    flexDirection: 'row'
-  },
-
-  listInfoHeader: {
-    flexDirection: 'column',
-    borderColor: '#ff200'
-  },
-
-  listInfoTitle: {
-    fontFamily: 'Roboto Slab',
-    fontSize: 18,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 5,
-    paddingTop: 5,
-
-    // backgroundColor: '#ffff00'
-  },
-
-  listInfoBody: {
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-    // height: '20%'
-  },
-
-  listInfoText: {
-    fontFamily: 'Roboto',
-    fontStyle: 'italic',
-    fontWeight: 'normal',
-    fontSize: 13,
-    lineHeight: 12,
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'left',
-    color: '#fff',
-    letterSpacing: 2,
+  sectionDescription: {
     marginTop: 8,
-    width: 90,
-    height: 20
-    // position: 'absolute'
+    fontSize: 18,
+    fontWeight: '400',
   },
-
-  listDesc: {
-    width: '50%',
-    flexDirection: 'column'
+  highlight: {
+    fontWeight: '700',
   },
-
-  listDescHeader: {
-    alignItems: 'center'
-  },
-
-  listDescTitle: {
-    color: '#fff',
-    marginTop: 2,
-  },
-
-  // listDivisor: {
-  //   paddingTop: 10,
-  //   width: '100%',
-  //   borderBottomColor: '#ff2400',
-  //   borderBottomWidth: 3
-  // },
 });
+
+export default App;
